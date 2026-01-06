@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% extends 'dashboard.html' %}
+{% block content%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Edit Product</h4>
+
+                    <form class="forms-sample" method="post" action="{% url 'update_product' product_id=data.id %}" enctype="multipart/form-data">
+                      {% csrf_token %}
+
+                      <div class="form-group">
+                        <label for="exampleInputName" >Product Category</label>
+                      <select class="form-control" id="exampleInputName1" name="product_category">
+                            <option>{{data.CategoryName}}</option>
+                            {% for c in categories %}
+                            <option value="{{c.Category_Name}}">{{c.Category_Name}}</option>
+                            {% endfor %}
+                        </select>
+                      </div>
+
+
+                      <div class="form-group">
+                        <label for="exampleInputName1">Product Name</label>
+                        <input type="text" class="form-control" id="exampleInputName2" placeholder="product name" name="product_name" value="{{data.Product_Name}}">
+                      </div>
+
+                        <div class="form-group">
+                        <label for="exampleInputName1">Price</label>
+                        <input type="number" class="form-control" id="exampleInputName" placeholder="price" name="price" value="{{data.price}}">
+                      </div>
+
+                         <div class="form-group">
+                        <label for="exampleInputName1">Short Description</label>
+                        <input type="text" class="form-control" id="exampleInputName3" placeholder="short_description" name="short_description" value="{{data.Short_Description}}">
+                      </div>
+
+
+                        <div class="form-group" >
+                        <label for="exampleInputName1" >Detailed Description</label>
+                        <input  type="text" class="form-control" id="exampleInputName4" placeholder="detailed_description" name="detailed_description" value="{{data.detailed_Description}}">
+                      </div>
+
+                         <div class="form-group">
+                        <label for="exampleInputName1">Brand</label>
+                        <input type="text" class="form-control" id="exampleInputName5" placeholder="brand" name="brand" value="{{data.Brand}}">
+                      </div>
+
+                       <div class="form-group">
+                        <label for="exampleInputPassword6">Category Image</label>
+                         <img src="{{data.Product_Image1.url}}" width="50px" height="50px">
+                        <input type="file" class="form-control" id="exampleInputPassword" placeholder="category Image" name="category_image1" >
+                      </div>
+
+                        <div class="form-group">
+                        <label for="exampleInputPassword6">Category Image</label>
+                         <img src="{{data.Product_Image2.url}}" width="50px" height="50px">
+                        <input type="file" class="form-control" id="exampleInputPassword7" placeholder="category Image" name="category_image2" >
+                      </div>
+
+                        <div class="form-group">
+                        <label for="exampleInputPassword6">Category Image</label>
+                         <img src="{{data.Product_Image3.url}}" width="50px" height="50px">
+                        <input type="file" class="form-control" id="exampleInputPassword6" placeholder="category Image" name="category_image3" >
+                      </div>
+
+                      <button type="submit" class="btn btn-primary mr-2">Submit </button>
+                      <button class="btn btn-dark">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+</body>
+</html>
+{% endblock %}

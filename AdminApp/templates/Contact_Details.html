@@ -1,0 +1,49 @@
+{% extends 'Dashboard.html' %}
+{% block content %}
+
+<div class="card mt-4">
+  <div class="card-body">
+    <h4 class="card-title">View Contact Messages</h4>
+
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Subject</th>
+            <th>Message</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for contact in data %}
+          <tr>
+            <td>{{ contact.Name }}</td>
+            <td>{{ contact.Email }}</td>
+            <td>{{ contact.MobileNo }}</td>
+            <td>{{ contact.Subject }}</td>
+            <td>{{ contact.Message }}</td>
+
+            <!-- Actions -->
+            <td>
+              <a href="{% url 'delete_contact' contact_id=contact.id %}"
+   class="btn btn-danger btn-sm">Delete</a>
+
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="6" class="text-center">No contact messages found</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
